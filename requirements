@@ -1,0 +1,43 @@
+Hey Leia,
+
+Kim and Erin here. We got together to begin working on the Node.js exercise and were wondering if we could get some clarification on a few things. We've highlighted some bullet points below that are a bit fuzzy to us. If you wouldn't mind elaborating a bit on them, it would be super appreciated.
+
+Also, just to make sure we're on the same page as to the final deliverable from this assignment. We were thinking, would making a to-do list application where each list will have tasks associated with that list be an example use of the service?
+
+Thanks for your help with this stuff, we just wanted to make sure we're on the right path, and fully prepared to rock it at the internship in a couple weeks!
+
+Erin and Kim
+
+
+Node.js Exercise
+Implement the requirements below to create a basic key/value service:
+uses node.js
+create a RESTful API, we would suggest using express.js as the http server
+the route should be something like /v1/key
+show some example uses of the service.
+have unit tests implemented (preferably using mocha)
+use cases:
+user should be able to get all keys/values
+user should be able to get a specific key/value
+user should be able to add a key/value
+user should be able to update a key/value
+user should be able to delete a key/value
+enable the use of 2 different backing stores of your choice. they can use real data stores or be mocked out to represent. which one is used should be determined via configuration. Do you mean seeded data with a backup database?
+demonstrate asynchronous handling
+simultaneous (make 2 or more calls that are processed asynchronously and when all calls complete results are compiled to a single result object which is returned)
+chained (make a call the result of which informs a subsequent call). Can you elaborate on an example of a chained handle?
+The code should be runnable and have some form of demonstration. For example, a user would add a key of 'sports', its value the list of 'baseball', 'hockey' and 'football'.
+
+
+Hi there!
+
+A to-do list app sounds just fine, the description of this exercise is purposefully ambiguous, so as to allow for as much wiggle room as possible in the actual implementation. As far as example uses and showing them, I think as long as you have the standard CRUD endpoints outlined in the bullet points, and then maybe some unit tests/documentation that show how they work that would be just fine.
+
+The 2 different data store question is a bit tricky, what we mean here is actually having two different database platforms that can be switched between dynamically. It’s meant to get you thinking about how to keep the structure of your data models as generic as possible. It’s also a way for you to get your feet wet with a platform you may not already be familiar with. For example if you’re already experienced with mySQL that could be a good option, but then maybe go and check out a noSQL data store such as mongo. You can seed the data if you like, but you don’t have to.
+
+A chained call is something that is common in node.js, what we’re asking here is that you show use of a callback (take data from that callback and do something with it), and also be able to handle the asynchronous nature of node. This is one of my favorite resources for learning about control flow in node, I’d highly recommend checking it out: http://book.mixu.net/node/ch7.html
+
+I hope this is helpful, please let me know if I can elaborate further!
+
+Cheers,
+Leia

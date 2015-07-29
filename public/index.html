@@ -1,0 +1,33 @@
+<html ng-app="brew_pdx_app">
+  <head>
+    <title>PDX Breweries</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+    <script src="controllers/angularApp.js"></script>
+  </head>
+  <body ng-controller="MainCtrl">
+    <h1>Breweries Will go Here</h1>
+    <form>
+      <input class="form-control" ng-model="brew.name" placeholder="Name">
+      <input class="form-control" ng-model="brew.location" placeholder="Location">
+      <input class="form-control" ng-model="brew.rating" placeholder="Rating">
+      <button class="btn btn-primary" ng-click="addBrewery()">Add Brewert</button>
+      <button class="btn btn-warning" ng-click="updateBrewery()">Save</button>
+    </form>
+    <div class="container">
+      <ul ng-repeat="brew in breweries">
+        <li>
+          {{brew.name}}
+          <button class="btn btn-info" ng-click="editBrewery(brew._id); editing=true">Edit Brewery</button>
+          <button class="btn btn-danger" ng-click="deleteBrewery(brew._id)">Delete Brewery</button>
+
+          <div ng-show="editing">
+            <input class="form-control" ng-model="brewery.name" placeholder="brew.name">
+            <input class="form-control" ng-model="brewery.location" placeholder="Location">
+            <input class="form-control" ng-model="brewery.rating" placeholder="Rating">
+            <button class="btn btn-warning" ng-click="updateBrewery()">Save</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+</body>
+</html>
