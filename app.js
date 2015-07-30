@@ -5,6 +5,11 @@ var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
 var db = mongojs('brew_pdx', ['brew_pdx']);
 
+//for reading and writing to files
+var fs = require('fs');
+
+var featuredBrewery;
+
 //finds the files in the public folder to user
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -15,7 +20,49 @@ app.get("/breweries", function(request, response) {
     console.log(breweries)
     response.json(breweries);
   });
+})
+
+function findFeaturedBrewery(filename, callback) {
+  fs.readFile(filename, function doneReadingFile(err, data) {
+    if (err) {
+      console.log("error reading file");
+    } else {
+      featuredBrewery = JSON.parse(data);
+      console.log("success reading file");
+      callback(featuredBrewery);
+    }
+  });
+};
+
+app.get("/breweries/feature", function(request, response) {
+  var filename = "featuredBrewery.txt";
+  featuredBrewery = findFeaturedBrewery(filename, returnFeaturedBrewery);
+  response.json(featuredBrewery);
 });
+
+function returnFeaturedBrewery(data) {
+    return data;
+};
+
+// {
+//
+//   console.log("This is the featured brewery from app.get" + featuredBrewery);
+// });
+//
+// db.brew_pdx.find(function(err, breweries) {
+//   getBrewery(breweries, featuredBrewery);
+//   console.log("you're feature brewery is on the way");
+// });
+// function getBrewery(data, callback) {
+//   var timer = setTimeout(function() {
+//     // var data = [1, 2, 3];
+//     callback(data);
+//   }, 3000);
+// };
+//
+// function featuredBrewery(data) {
+//   console.log(data);
+// };
 
 app.get("/breweries/:id", function(request, response) {
   var brew_id = request.params.id;

@@ -1,6 +1,14 @@
 <html ng-app="brew_pdx_app">
   <head>
     <title>PDX Breweries</title>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
     <script src="controllers/angularApp.js"></script>
   </head>
@@ -28,6 +36,12 @@
           </div>
         </li>
       </ul>
+    </div>
+
+    <p>Here is the featured brewery: {{featuredBrewery.name}}</p>
+
+    <div class="container">
+      <button class="btn btn-info" ng-click="seeFeaturedBrewery()">Find Featured Brewery</button>
     </div>
 </body>
 </html>

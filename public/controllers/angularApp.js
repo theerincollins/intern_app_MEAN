@@ -40,4 +40,12 @@ angularApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
     })
   }
 
+  $scope.seeFeaturedBrewery = function() {
+    $http.get('/breweries/feature').success(function(response) {
+
+      console.log(response);
+      $scope.featuredBrewery = response;
+    });
+  };
+
 }]);
