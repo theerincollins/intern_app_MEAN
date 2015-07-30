@@ -13,14 +13,27 @@
     <script src="controllers/angularApp.js"></script>
   </head>
   <body ng-controller="MainCtrl">
-    <h1>Breweries Will go Here</h1>
+    <div class="container">
+      <h1>Breweries Will go Here</h1>
+    </div>
     <form>
-      <input class="form-control" ng-model="brew.name" placeholder="Name">
-      <input class="form-control" ng-model="brew.location" placeholder="Location">
-      <input class="form-control" ng-model="brew.rating" placeholder="Rating">
-      <button class="btn btn-primary" ng-click="addBrewery()">Add Brewert</button>
-      <button class="btn btn-warning" ng-click="updateBrewery()">Save</button>
+      <div class="container add-form">
+        <div class="form-group">
+          <input class="form-control" ng-model="brew.name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <input class="form-control" ng-model="brew.location" placeholder="Location">
+        </div>
+        <div class="form-group">
+          <input class="form-control" ng-model="brew.rating" placeholder="Rating">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" ng-click="addBrewery()">Add Brewery</button>
+          <button class="btn btn-warning" ng-click="updateBrewery()">Save</button>
+        </div>
+      </div>
     </form>
+
     <div class="container">
       <ul ng-repeat="brew in breweries">
         <li>
@@ -38,7 +51,7 @@
       </ul>
     </div>
 
-    <p>Here is the featured brewery: {{featuredBrewery.name}}</p>
+    <p ng-model="featuredBrewery">Here is the featured brewery: {{featuredBrewery.name}}</p>
 
     <div class="container">
       <button class="btn btn-info" ng-click="seeFeaturedBrewery()">Find Featured Brewery</button>

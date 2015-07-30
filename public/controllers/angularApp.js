@@ -45,6 +45,7 @@ angularApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
 
       console.log(response);
       $scope.featuredBrewery = response;
+      console.log($scope.featuredBrewery)
     });
   };
 

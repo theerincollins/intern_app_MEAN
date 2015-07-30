@@ -8,8 +8,6 @@ var db = mongojs('brew_pdx', ['brew_pdx']);
 //for reading and writing to files
 var fs = require('fs');
 
-var featuredBrewery;
-
 //finds the files in the public folder to user
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -22,28 +20,29 @@ app.get("/breweries", function(request, response) {
   });
 })
 
-function findFeaturedBrewery(filename, callback) {
+
+
+app.get("/breweries/feature", function(request, response) {
+  var filename = "featuredBrewery.txt";
   fs.readFile(filename, function doneReadingFile(err, data) {
     if (err) {
       console.log("error reading file");
     } else {
-      featuredBrewery = JSON.parse(data);
+      var featuredBrewery = JSON.parse(data);
       console.log("success reading file");
-      callback(featuredBrewery);
+      console.log(featuredBrewery[0]);
+      response.send(featuredBrewery[0]);
     }
   });
-};
-
-app.get("/breweries/feature", function(request, response) {
-  var filename = "featuredBrewery.txt";
-  featuredBrewery = findFeaturedBrewery(filename, returnFeaturedBrewery);
-  response.json(featuredBrewery);
 });
 
-function returnFeaturedBrewery(data) {
-    return data;
-};
-
+// function returnFeaturedBrewery(data) {
+//     console.log(data);
+// };
+//
+// function findFeaturedBrewery(filename, callback) {
+//
+// };
 // {
 //
 //   console.log("This is the featured brewery from app.get" + featuredBrewery);
