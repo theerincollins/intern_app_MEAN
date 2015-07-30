@@ -1,5 +1,5 @@
   [{ "_id": "55b95e96816233065cbe404f",
-    "name": "Brewery",
-    "location": "over there",
-    "rating": "1",
-    "imageUrl": "http://davisbeerweek.com/wp-content/uploads/2014/03/Craft-Beer.jpeg"}]
+    "name": "Hair of the Dog Brewing Company",
+    "location": "61 SE Yamhill St & 1211 NE Alberta St",
+    "rating": "10",
+    "imageUrl": "http://beerlens.com/wp-content/uploads/2012/02/IMG_0099.jpg"}]

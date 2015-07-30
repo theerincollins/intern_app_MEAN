@@ -1,60 +1,93 @@
 <html ng-app="brew_pdx_app">
   <head>
     <title>PDX Breweries</title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
     <script src="controllers/angularApp.js"></script>
+
   </head>
-  <body ng-controller="MainCtrl">
-    <div class="container">
-      <h1>Breweries Will go Here</h1>
+
+  <body>
+
+<div ng-controller="MainCtrl">
+    <div class="container-fluid beer-header">
+      <h1 class="text-center header-title">Drink Beer in Portland</h1>
     </div>
-    <form>
-      <div class="container add-form">
-        <div class="form-group">
-          <input class="form-control" ng-model="brew.name" placeholder="Name">
-        </div>
-        <div class="form-group">
-          <input class="form-control" ng-model="brew.location" placeholder="Location">
-        </div>
-        <div class="form-group">
-          <input class="form-control" ng-model="brew.rating" placeholder="Rating">
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary" ng-click="addBrewery()">Add Brewery</button>
-          <button class="btn btn-warning" ng-click="updateBrewery()">Save</button>
+
+    <div class="container" ng-hide="showFeature">
+      <div class="col-sm-6">
+        <div class="info-div">
+        <form>
+          <h3>Add a Brewery to the List:</h3>
+            <div class="form-group">
+              <input class="form-control" ng-model="brew.name" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <input class="form-control" ng-model="brew.location" placeholder="Location">
+            </div>
+            <div class="form-group">
+              <input class="form-control" ng-model="brew.rating" placeholder="Rating">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" ng-click="addBrewery()">Add Brewery</button>
+            </div>
+        </form>
+      </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="info-div container">
+          <h3 class="list-title">Brew List</h3>
+          <ul class="list-unstyled" ng-repeat="brew in breweries">
+            <li>
+              <p>
+                {{brew.name}}
+                <button type="button" ng-click="editBrewery(brew._id); editing=true" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                <button type="button" ng-click="deleteBrewery(brew._id)" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+              </p>
+              <div ng-show="editing">
+                <div class="form-group">
+                  <input class="form-control" ng-model="brewery.name" placeholder="brew.name">
+                </div>
+                <div class="form-group">
+                  <input class="form-control" ng-model="brewery.location" placeholder="Location">
+                </div>
+                <div class="form-group">
+                  <input class="form-control" ng-model="brewery.rating" placeholder="Rating">
+                </div>
+                <button class="btn btn-warning" ng-click="updateBrewery()">Save</button>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
-    </form>
-
-    <div class="container">
-      <ul ng-repeat="brew in breweries">
-        <li>
-          {{brew.name}}
-          <button class="btn btn-info" ng-click="editBrewery(brew._id); editing=true">Edit Brewery</button>
-          <button class="btn btn-danger" ng-click="deleteBrewery(brew._id)">Delete Brewery</button>
-
-          <div ng-show="editing">
-            <input class="form-control" ng-model="brewery.name" placeholder="brew.name">
-            <input class="form-control" ng-model="brewery.location" placeholder="Location">
-            <input class="form-control" ng-model="brewery.rating" placeholder="Rating">
-            <button class="btn btn-warning" ng-click="updateBrewery()">Save</button>
-          </div>
-        </li>
-      </ul>
     </div>
 
-    <p ng-model="featuredBrewery">Here is the featured brewery: {{featuredBrewery.name}}</p>
+    <button class="btn btn-info see-featured" ng-click="seeFeaturedBrewery(); showFeature=true">Featured Brewery</button>
 
-    <div class="container">
-      <button class="btn btn-info" ng-click="seeFeaturedBrewery()">Find Featured Brewery</button>
+
+
+
+
+    <div class="container" ng-show="showFeature">
+      <div ng-model="featuredBrewery">
+        <h1>{{featuredBrewery.name}}</h1>
+        <img class= "featured-image" src="{{featuredBrewery.imageUrl}}">
+        <p>Wow, fantastic venue/building with broad sweeping open interior space.  You will not feel cramped while in the dining area (which is really undefined from the bar) or at the bar top.The entrance is multiple garage doors that were open and just made the entire space really seem big.  Along with large windows West facing allowed much natural light into the open space.  It felt really comfortable!Now the important part, the beer!  I have to say that the variety and unique combinations and reserve beers they have in bottles was very interesting.The bartender was exceptionally helpful when it came to helping us out in selecting the brews we wanted to try.  She was able to give us really good descriptions so that we could make an educated guess on what we wanted, a nice touch to the overall experience. We found this place on our last day in Portland and it happens to be located across the Willamette River in a warehouse district that seems to be experiencing some revitalization.</p>
+
+        <button class="btn btn-info" ng-click="showFeature=false">All Breweries</button>
+
+      </div>
     </div>
+  </div>
 </body>
 </html>
